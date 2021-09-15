@@ -6,19 +6,30 @@
         <router-link :to="{name : 'View', params: {id: news.id, title: news.title, content: news.content}}">
            <button>View</button>   
         </router-link>
-        <button @click="toggleModal">Delete</button>                  
-        <div v-if="showModal">
-          <MessageDlg :ndx="index">
+        <button @click="toggleModal" :current_ndx="index">Delete</button>                  
+        <!-- <div v-if="showModal">
+          <MessageDlg>
             <h1> Confirmation </h1>
             <p>Are you sure you want to delete</p>
-            <p> {{index}} </p>
+            <p> {{current_ndx}} </p>
             <template v-slot:links>
               <button @click="toggleModal" type="button">Close</button>   
-              <button @click="removeNews(ndx)">Confirm</button> 
+              <button @click="removeNews(current_ndx)">Confirm</button> 
             </template>
           </MessageDlg> 
-        </div>
+        </div> -->
       </div>
+    </div>
+    <div v-if="showModal">
+      <MessageDlg>
+        <h1> Confirmation </h1>
+        <p>Are you sure you want to delete</p>
+        <p> {{current_ndx}} </p>
+        <template v-slot:links>
+          <button @click="toggleModal" type="button">Close</button>   
+          <button @click="removeNews(current_ndx)">Confirm</button> 
+        </template>
+      </MessageDlg> 
     </div>
   </div>
 </template>
@@ -33,6 +44,8 @@ export default {
     components: { SingleNews, MessageDlg },
     setup(props) {
         const showModal = ref('')
+        const current_ndx = ref('')
+
         const removeNews = (index) => {
             props.newslist.splice(index, 1)
             showModal.value = false
@@ -40,8 +53,10 @@ export default {
 
         const toggleModal = () => {
           showModal.value = !showModal.value
+
+        current_ndx.value =current_ndx.value
         }
-       return { showModal, removeNews, toggleModal }     
+       return { showModal, current_ndx, removeNews, toggleModal }     
     }
 }
 </script>
