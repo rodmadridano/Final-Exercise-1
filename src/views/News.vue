@@ -30,8 +30,8 @@ export default {
     const newslist = ref([]);
 
     const addNews = () => {
-      id.value++
       newslist.value.push({id: id.value, title :title.value, content:content.value}),
+      id.value++
       title.value = '',
       content.value = ''
     }    

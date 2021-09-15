@@ -1,23 +1,12 @@
 <template>
   <div class="news-list">
     <div v-for="(news, index) in newslist" :key="news.title">
-      <SingleNews :post="news" :postlist="newslist" :key="index"/>
+      <SingleNews :post="news" :postlist="newslist" :key="news.id"/>
       <div class=btn> 
         <router-link :to="{name : 'View', params: {id: news.id, title: news.title, content: news.content}}">
            <button>View</button>   
         </router-link>
-        <button @click="toggleModal" :current_ndx="index">Delete</button>                  
-        <!-- <div v-if="showModal">
-          <MessageDlg>
-            <h1> Confirmation </h1>
-            <p>Are you sure you want to delete</p>
-            <p> {{current_ndx}} </p>
-            <template v-slot:links>
-              <button @click="toggleModal" type="button">Close</button>   
-              <button @click="removeNews(current_ndx)">Confirm</button> 
-            </template>
-          </MessageDlg> 
-        </div> -->
+        <button @click="toggleModal(index)"  >Delete</button>                  
       </div>
     </div>
     <div v-if="showModal">
@@ -46,15 +35,14 @@ export default {
         const showModal = ref('')
         const current_ndx = ref('')
 
-        const removeNews = (index) => {
-            props.newslist.splice(index, 1)
+        const removeNews = (current_ndx) => {
+            props.newslist.splice(current_ndx, 1)
             showModal.value = false
         }
 
-        const toggleModal = () => {
+        const toggleModal = (index) => {
           showModal.value = !showModal.value
-
-        current_ndx.value =current_ndx.value
+          current_ndx.value = index
         }
        return { showModal, current_ndx, removeNews, toggleModal }     
     }

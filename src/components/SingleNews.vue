@@ -6,11 +6,13 @@
          </router-link>  -->
       <p><b>Title : </b> {{post.title}} </p>      
       <p><b>Content : </b> {{snippet}} </p>
+      <p><b>Key : </b> {{post.id}} </p>      
     </div>   
   </div>
 </template>
 <script>
 import { computed } from "@vue/reactivity"
+
 
 export default {
     props: ['post', 'postlist', 'key'],
