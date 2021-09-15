@@ -1,40 +1,47 @@
 <template>
    <div class="viewdetail">
-       <h1>Welcome to view details</h1>
-     <!-- <h3>{{ props.title}}</h3>
-     <p>{{ props.content}}</p> -->
+       <h3>{{ title }}</h3>
+       <p>{{ content }}</p>
    </div>   
+   <div class="btn">
+     <router-link to="/News">
+        <button>Close</button>
+     </router-link> 
+     
+   </div>
+   
 </template>
 
 <script>
-// import getPost from '../composables/getPost.js';
-
-import { ref } from "@vue/reactivity"
-
-// export default {
-//     props: ['id'],
-//     setup(props) {
-//        const {post, error, load} = getPost(props.id)
-
-//        load()
-
-//        return { post, error }
-//     }
-// }
-// import DisplayNews from '../components/DisplayNews.vue';
-export default {
-   props: ['newlist'],
-   setup(props) {
-       title = ref('')
-       content = ref('')
-       title.value = newlist.title
-       content.value = newlist.content
-
-       return { title, content }
-   }
+ export default {
+     props: ['id', 'title', 'content'],
 }
 </script>
 
 <style>
- 
+  .viewdetail {
+    display: block; 
+    text-align: center;
+    height: 500px;   
+    border: 2px solid rgba(0,0,0,.125);    
+    background-color: rgb(212, 201, 201);
+    margin-top: 5px; 
+    margin-left: 500px;
+    width: 900px;
+ }
+
+.viewdetail h3{
+    text-align: left;
+    word-wrap: break-word;
+    margin-left: 20px;
+    margin-right: 20px;
+ }
+
+ .viewdetail p{
+    text-align: justify;
+    word-wrap: break-word;
+    margin-top: 50px; 
+    margin-left: 20px;
+    margin-right: 20px;
+ }
 </style>

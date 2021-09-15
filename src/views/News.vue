@@ -9,8 +9,8 @@
         <button name="button">Submit</button>
       </div>
     </form>
-    <hr/>
-    <DisplayNews :newslist="newslist"/>  
+    <!-- <hr/> -->
+    <DisplayNews :newslist="newslist"/>      
   </div>
 
 </template>

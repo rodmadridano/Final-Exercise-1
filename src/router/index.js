@@ -15,12 +15,12 @@ const routes = [
     component: News
   },
   {
-    //path: '/Views/:id',
-    path: '/Views',
-    params: 'newslist',
+    path: '/Views/:id',
+    //path: '/Views',
+    // params: 'id',
     name: 'View',
     component: ViewDetails,
-    props: true
+     props: true
   }  
 ]
 
